@@ -9,13 +9,13 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-
+from models import db
 
 # Views go here!
-
+ 
 @app.route('/')
 def index():
-    return '<h1>Project Server</h1>'
+    return '<h1>Exchange Ease</h1>'  
 
 
 if __name__ == '__main__':
