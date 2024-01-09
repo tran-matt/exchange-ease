@@ -1,9 +1,9 @@
 from flask import Flask, request, make_response
 from flask_restful import Api, Resource
-from config import app, db
+from config import app, db, api
 from models import User, Item, Trade, Review
 
-api = Api(app)
+# api = Api(app)
 
 class AllUsers(Resource):
     def get(self):
