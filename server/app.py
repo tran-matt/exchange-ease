@@ -3,8 +3,6 @@ from flask_restful import Api, Resource
 from config import app, db, api
 from models import User, Item, Trade, Review
 
-# api = Api(app)
-
 class AllUsers(Resource):
     def get(self):
         users = User.query.all()
@@ -41,7 +39,7 @@ api.add_resource(UserById, '/users/<int:user_id>')
 class AllItems(Resource):
     def get(self):
         items = Item.query.all()
-        response_body = [item.to_dict(rules=('-owner.items', '-trades')) for item in items]
+        response_body = [item.to_dict(rules=('-owner', '-trades')) for item in items]
         return make_response(response_body, 200)
 
 api.add_resource(AllItems, '/items')
@@ -51,7 +49,7 @@ class ItemById(Resource):
         item = Item.query.get(item_id)
 
         if item:
-            response_body = item.to_dict(rules=('-owner.items', '-trades'))
+            response_body = item.to_dict(rules=('-owner', '-trades'))
             return make_response(response_body, 200)
         else:
             response_body = {"error": "Item not found"}
@@ -74,7 +72,7 @@ api.add_resource(ItemById, '/items/<int:item_id>')
 class AllTrades(Resource):
     def get(self):
         trades = Trade.query.all()
-        response_body = [trade.to_dict(rules=('-item.trades', '-initiator.initiated_trades', '-receiver.received_trades')) for trade in trades]
+        response_body = [trade.to_dict(rules=('-item', '-initiator', '-receiver')) for trade in trades]
         return make_response(response_body, 200)
 
 api.add_resource(AllTrades, '/trades')
@@ -84,7 +82,7 @@ class TradeById(Resource):
         trade = Trade.query.get(trade_id)
 
         if trade:
-            response_body = trade.to_dict(rules=('-item.trades', '-initiator.initiated_trades', '-receiver.received_trades'))
+            response_body = trade.to_dict(rules=('-item', '-initiator', '-receiver'))
             return make_response(response_body, 200)
         else:
             response_body = {"error": "Trade not found"}
@@ -107,7 +105,7 @@ api.add_resource(TradeById, '/trades/<int:trade_id>')
 class AllReviews(Resource):
     def get(self):
         reviews = Review.query.all()
-        response_body = [review.to_dict(rules=('-reviewer.reviews_given', '-reviewed_user.reviews_received')) for review in reviews]
+        response_body = [review.to_dict(rules=('-reviewer', '-reviewed_user')) for review in reviews]
         return make_response(response_body, 200)
 
 api.add_resource(AllReviews, '/reviews')
@@ -117,7 +115,7 @@ class ReviewById(Resource):
         review = Review.query.get(review_id)
 
         if review:
-            response_body = review.to_dict(rules=('-reviewer.reviews_given', '-reviewed_user.reviews_received'))
+            response_body = review.to_dict(rules=('-reviewer', '-reviewed_user'))
             return make_response(response_body, 200)
         else:
             response_body = {"error": "Review not found"}
@@ -136,6 +134,10 @@ class ReviewById(Resource):
             return make_response(response_body, 404)
 
 api.add_resource(ReviewById, '/reviews/<int:review_id>')
+
+@app.route('/')
+def home():
+    return "Exchange Ease!"
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
