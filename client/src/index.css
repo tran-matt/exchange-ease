@@ -1,7 +1,94 @@
-:root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
+/* index.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fff; 
+  color: #333; 
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.dark-mode body {
+  background-color: #333; 
+  color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+header {
+  background-color: #007BFF; 
+  color: #fff; 
+  padding: 10px 0;
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #007BFF; 
+  color: #fff;
+  padding: 10px 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  margin-right: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff; 
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3; 
+}
+
+/* Button Styles */
+button {
+  background-color: #0056b3;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004080;
+}
+
+.dark-mode header,
+.dark-mode nav {
+  background-color: #333;
+}
+
+.dark-mode a {
+  color: #bbb; 
+}
+
+.dark-mode a:hover {
+  color: #fff; 
+}
+
+.dark-mode button {
+  background-color: #004080; 
+}
+
+.dark-mode button:hover {
+  background-color: #003366; 
+}

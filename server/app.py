@@ -135,6 +135,23 @@ class ReviewById(Resource):
 
 api.add_resource(ReviewById, '/reviews/<int:review_id>')
 
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+
+        # Ensure 'created_at' is included in the request
+        if 'created_at' not in data:
+            data['created_at'] = datetime.utcnow()
+
+        # Process the registration logic and save the user with the 'created_at' field
+        new_user = User(name=data['name'], username=data['username'], password=data['password'], email=data['email'], created_at=data['created_at'])
+        db.session.add(new_user)
+        db.session.commit()
+
+        return make_response({"message": "User registered successfully"}, 201)
+
+api.add_resource(Register, '/api/register')
+
 @app.route('/')
 def home():
     return "Exchange Ease!"

@@ -12,6 +12,9 @@ from sqlalchemy import MetaData
 
 # Instantiate app, set attributes
 app = Flask(__name__)
+
+app.secret_key = b'\xfc\xd9\x8epE\xb5\x1bs\xf5\x0cv\x10\xaa\xc7\x8d\xa6'
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///exchangeease.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
