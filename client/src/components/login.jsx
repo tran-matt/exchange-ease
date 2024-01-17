@@ -1,42 +1,57 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Login = ({ onSuccessfulLogin }) => {
+  const navigate = useNavigate();
+  const [loginFormData, setLoginFormData] = useState({
+    username: '',
+    password: '', 
+  });
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const updateLoginFormData = (e) => {
+    setLoginFormData({ ...loginFormData, [e.target.name]: e.target.value });
+  };
+  const handleSuccessfulLogin = (data) => {
+    sessionStorage.setItem('token', JSON.stringify(data))
+    navigate('/userdashboard')
+  
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        credentials: 'include',  
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginFormData),
+      });
 
-    // Implement your login logic here
-    // You can make a request to your server to handle authentication
-
-    console.log('Username:', username);
-    console.log('Password:', password);
-
-    // Reset the form after handling login
-    setUsername('');
-    setPassword('');
+      if (response.ok) {
+        const user = await response.json();
+        handleSuccessfulLogin(user);
+      } else {
+        const error = await response.json();
+        console.error('Login failed:', error.message);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
 
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={(e)=>{handleSubmit(e)}}>
         <div>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
+            name="username"
+            value={loginFormData.username}
+            onChange={updateLoginFormData}
             required
           />
         </div>
@@ -44,9 +59,9 @@ const Login = () => {
           <label htmlFor="password">Password:</label>
           <input
             type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
+            name="password"
+            value={loginFormData.password}
+            onChange={updateLoginFormData}
             required
           />
         </div>

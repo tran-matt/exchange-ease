@@ -18,21 +18,21 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px; /* Increased padding for the container */
 }
 
 /* Header Styles */
 header {
   background-color: #007BFF; 
   color: #fff; 
-  padding: 10px 0;
+  padding: 20px 0; /* Increased padding for the header */
 }
 
 /* Navigation Styles */
 nav {
   background-color: #007BFF; 
   color: #fff;
-  padding: 10px 0;
+  padding: 15px 0; /* Adjusted padding for the nav */
 }
 
 ul {
@@ -41,21 +41,23 @@ ul {
   padding: 0;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 li {
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 a {
   text-decoration: none;
-  color: #fff; 
+  color: #fff;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0056b3; 
+  color: #0056b3;
 }
 
 /* Button Styles */
@@ -63,7 +65,7 @@ button {
   background-color: #0056b3;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 12px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -78,17 +80,23 @@ button:hover {
 }
 
 .dark-mode a {
-  color: #bbb; 
+  color: #bbb;
 }
 
 .dark-mode a:hover {
-  color: #fff; 
+  color: #fff;
 }
 
 .dark-mode button {
-  background-color: #004080; 
+  background-color: #004080;
 }
 
 .dark-mode button:hover {
-  background-color: #003366; 
+  background-color: #003366;
 }
+
+.img-thumbnail {
+    width: auto; 
+    height: 50px; 
+    max-height: 200px; 
+  }

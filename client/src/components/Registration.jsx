@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
-  const history = useHistory();
+  let navigate = useNavigate();
 
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [users, setUsers] = useState([]);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('/api/users');
+        const usersData = await response.json();
+        setUsers(usersData);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
   };
 
   const handleUsernameChange = (e) => {
@@ -25,27 +45,34 @@ const Registration = () => {
     setEmail(e.target.value);
   };
 
-  const handleRegistration = async (e) => {
-    e.preventDefault();
-
-    // Implement your registration logic here
-    // You can make a request to your server to handle user registration
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
-      const response = await fetch('/api/register', {
+      const formData = {
+        firstName,
+        lastName,
+        username,
+        password,
+        email,
+      };
+
+      const response = await fetch('/api/signup', {
+
         method: 'POST',
+        credentials: 'include', 
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, username, password, email }),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        // Redirect to login after successful registration
-        history.push('/login');
+        const newUser = await response.json();
+        setUsers([...users, newUser]);
+        navigate('/userdashboard');
       } else {
-        // Handle registration error
-        console.error('Registration failed');
+        console.error('Registration failed:', response.statusText);
       }
     } catch (error) {
       console.error('Error during registration:', error);
@@ -55,10 +82,14 @@ const Registration = () => {
   return (
     <div>
       <h1>Registration</h1>
-      <form onSubmit={handleRegistration}>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" value={name} onChange={handleNameChange} required />
+          <label htmlFor="firstName">First Name:</label>
+          <input type="text" id="firstName" value={firstName} onChange={handleFirstNameChange} required />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name:</label>
+          <input type="text" id="lastName" value={lastName} onChange={handleLastNameChange} required />
         </div>
         <div>
           <label htmlFor="username">Username:</label>

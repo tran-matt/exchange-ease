@@ -22,7 +22,7 @@ const Home = () => {
           {/* Feature 1 */}
           <div className="col-md-6 mb-4">
             <img
-              src="/path/to/feature1-image.jpg"
+              src="/inventory.png"
               alt="Intuitive Inventory Management"
               className="img-thumbnail"
             />
@@ -32,7 +32,7 @@ const Home = () => {
           {/* Feature 2 */}
           <div className="col-md-6 mb-4">
             <img
-              src="/path/to/feature2-image.jpg"
+              src="smart.png"
               alt="Smart Trade Matching Algorithm"
               className="img-thumbnail"
             />
@@ -42,7 +42,7 @@ const Home = () => {
           {/* Feature 3 */}
           <div className="col-md-4 mb-4">
             <img
-              src="/path/to/feature3-image.jpg"
+              src="secure.png"
               alt="Secure Messaging System"
               className="img-thumbnail"
             />
@@ -52,7 +52,7 @@ const Home = () => {
           {/* Feature 4 */}
           <div className="col-md-4 mb-4">
             <img
-              src="/path/to/feature4-image.jpg"
+              src="notification.png"
               alt="Real-time Trade Notifications"
               className="img-thumbnail"
             />
@@ -62,7 +62,7 @@ const Home = () => {
           {/* Feature 5 */}
           <div className="col-md-4 mb-4">
             <img
-              src="/path/to/feature5-image.jpg"
+              src="offer.png"
               alt="Customizable Trade Offers"
               className="img-thumbnail"
             />

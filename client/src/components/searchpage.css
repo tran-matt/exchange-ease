@@ -1,0 +1,52 @@
+/* searchpage.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Search Page Container */
+  .search-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1, h2 {
+    color: #333;
+  }
+  
+  /* Search Bar Styles */
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Search Results Styles */
+  .search-results {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+  }
+  
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .result-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  result-box strong {
+    color: #333;
+  }
+  

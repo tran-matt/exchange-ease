@@ -1,0 +1,8 @@
+/* AddItem.css */
+.resizable-textarea {
+    resize: both; 
+    overflow: auto; 
+    min-height: 50px;
+    min-width: 200px;
+  }
+  
