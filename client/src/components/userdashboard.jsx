@@ -211,7 +211,7 @@ const UserDashboard = () => {
         {items.length > 0 ? (
           <div className="row">
             {items.map((item) => (
-              <div className="col-md-4 mb-3" key={item.id}>
+              <div className="col-md-4 mb-3 card-container" key={item.id}>
                 <div className="card">
                   <img src={item.image} className="card-img-top" alt={item.name} />
                   <div className="card-body">
@@ -242,7 +242,7 @@ const UserDashboard = () => {
   {trades.length > 0 ? (
     <div className="row">
       {trades.map((trade) => (
-        <div className="col-md-4 mb-3" key={trade.id}>
+        <div className="col-md-4 mb-3 card-container" key={trade.id}>
           <div className="card">
             <div className="card-body">
               <TradeCard trade={trade} handleDeleteTrade={handleDeleteTrade} />
@@ -262,7 +262,7 @@ const UserDashboard = () => {
   {tradeOffers.length > 0 ? (
     <div className="row">
       {tradeOffers.map((offer) => (
-        <div className="col-md-4 mb-3" key={offer.id}>
+        <div className="col-md-4 mb-3 card-container" key={offer.id}>
           <div className="card">
             <div className="card-body">
               {offer.status === 'Complete' ? (

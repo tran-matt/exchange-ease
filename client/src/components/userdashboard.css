@@ -20,31 +20,37 @@
     margin-top: 30px;
   }
   
-  /* Add your own styles for item, trade, and offer lists */
   .item-list {
-    /* Add styles for item list */
   }
   
   .trade-list {
-    /* Add styles for trade list */
   }
   
   .offer-list {
-    /* Add styles for offer list */
   }
   
-  /* Updated styles for positioning */
   .user-actions {
-    /* Align Create New Listing to the left */
     text-align: left;
   }
   
   .user-rating {
-    /* Align User Rating to the top right */
     text-align: right;
   }
+
+  .right-section {
+    background: #FFF; 
+    border-radius: 10px; 
+    padding: 15px; 
+    margin-top: 20px; 
+  }
+
+  .left-section {
+    background: #FFF; 
+    border-radius: 10px; 
+    padding: 15px; 
+    margin-top: 20px; 
+  }
   
-  /* Additional styling for the header buttons if needed */
   .user-actions button {
     margin-right: 10px; 
   }
@@ -102,27 +108,30 @@
     color: white;
   }
 
-  .accept-offer-button,
-  .reject-offer-button,
-  .btn-primary,
-  .btn-danger {
-    display: flex !important;
-    padding: 10px 20px !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px !important;
-    border-radius: 10px !important;
-    background: var(--orange, #F1B686) !important;
-    cursor: pointer !important;
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out !important;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1) !important; /* Add box shadow */
-  }
-  
-  .accept-offer-button:hover,
-  .reject-offer-button:hover,
-  .btn-primary:hover,
-  .btn-danger:hover {
-    background-color: #FAE5D3 !important; /* Adjusted hover background color */
-    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.2) !important; /* Increase box shadow on hover */
-  }
-  
+.card-container {
+  margin: 10px; 
+}
+
+.accept-offer-button,
+.reject-offer-button,
+.btn-primary,
+.btn-danger {
+  display: flex !important;
+  flex-direction: column; 
+  align-items: center; 
+  border-radius: 10px !important;
+  background: var(--orange, #F1B686) !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1) !important; 
+  padding: 10px; 
+  margin-top: 10px; 
+}
+
+.accept-offer-button:hover,
+.reject-offer-button:hover,
+.btn-primary:hover,
+.btn-danger:hover {
+  background-color: #FAE5D3 !important;
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.2) !important;
+}

@@ -28,7 +28,7 @@
   align-items: center;
   text-align: center;
   padding: 10px;
-  margin-bottom: 50px; /* Adjust margin-bottom to create space */
+  margin-bottom: 50px; 
 }
 
 .confirm-offer-section button,
@@ -53,8 +53,8 @@
 }
 
 .user-items-box li {
-  max-width: 100%; /* Adjust the maximum width as needed */
-  margin-bottom: 15px; /* Add some space between list items */
+  max-width: 100%;
+  margin-bottom: 15px;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -62,9 +62,9 @@
 }
 
 .user-items-box p {
-  margin: 0; /* Remove default margin for paragraphs */
+  margin: 0; 
 }
 
 .user-items-box button {
-  margin-top: 10px; /* Adjust spacing between button and content */
+  margin-top: 10px;
 }

@@ -9,6 +9,7 @@ import checkSession from "./checkSession";
 const Navbar = () => {
   const { toggleTheme, isDarkMode } = useTheme();
   const [loggedIn, setIsLoggedIn] = useState(false);
+  const [togglePosition, setTogglePosition] = useState(isDarkMode ? "right" : "left");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +31,11 @@ const Navbar = () => {
     } catch (error) {
       console.error("Logout failed:", error);
     }
+  };
+
+  const handleToggleClick = () => {
+    toggleTheme(); 
+    setTogglePosition(isDarkMode ? "left" : "right");
   };
 
   return (
@@ -71,9 +77,9 @@ const Navbar = () => {
             )}
           </div>
           <div
-            className={`toggle-slider ${isDarkMode ? "dark-mode" : ""}`}
-            onClick={toggleTheme}
-          ></div>
+        className={`toggle-slider ${isDarkMode ? "dark-mode" : ""} ${togglePosition}`}
+        onClick={handleToggleClick}
+      ></div>
         </div>
       </nav>
     </header>
