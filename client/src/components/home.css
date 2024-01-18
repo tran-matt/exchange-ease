@@ -1,0 +1,21 @@
+/* home.css */
+
+.banner-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  
+.feature-image {
+    width: auto;
+    height: 50px;
+    max-width: 200px;
+    max-height: 150px;
+  }
+  

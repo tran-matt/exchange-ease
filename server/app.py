@@ -199,6 +199,9 @@ class ItemUpdate(Resource):
         if item:
             item.name = data.get('name', item.name)
             item.description = data.get('description', item.description)
+            item.estimated_value = data.get('estimatedValue', item.estimated_value)
+            item.type = data.get('type', item.type)
+            item.image = data.get('image', item.image)
 
             db.session.commit()
             response_body = {"message": "Item updated successfully"}
@@ -208,6 +211,7 @@ class ItemUpdate(Resource):
             return make_response(response_body, 404)
 
 api.add_resource(ItemUpdate, '/api/items/update/<int:item_id>')
+
 
 class AllTrades(Resource):
     def get(self):

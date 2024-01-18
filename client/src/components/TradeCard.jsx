@@ -22,18 +22,18 @@ const TradeCard = ({trade, handleDeleteTrade, type='trades'}) => {
     },[])
 
 
-  return tradeInfo && (
-    <>
+    return tradeInfo && tradeInfo.trade_item && (
+      <>
         <li key={trade.id}>
-          Trade ID: {trade.id}, Status: {trade.status}, 
-          {tradeInfo && (tradeInfo.selected_items.map(item=>{
-            return <p> Offered Item {item.name} - {item.description}</p>
-          }))}
+          Trade ID: {trade.id}, Status: {trade.status},{' '}
+          {tradeInfo.selected_items.map((item) => (
+            <p key={item.id}>Offered Item {item.name} - {item.description}</p>
+          ))}
           Desired Item: {tradeInfo.trade_item.name} - {tradeInfo.trade_item.description}
-          {type==='trades' && <button onClick={() => handleDeleteTrade(trade.id)}>Delete</button>}
+          {type === 'trades' && <button onClick={() => handleDeleteTrade(trade.id)}>Delete</button>}
         </li>
-     </> 
-  )
+      </>
+    );
 }
 
 export default TradeCard

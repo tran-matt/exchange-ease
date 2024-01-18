@@ -1,0 +1,28 @@
+.faq-section {
+    max-width: 800px;
+    margin:0 auto;
+    padding:20px;
+}
+
+h1,h2,h3 {
+    color:#0547A7;
+    text-align: center;
+}
+
+section {
+    margin-top: 20px;
+}
+
+h2,h3 {
+    margin-bottom:10px;
+}
+
+div {
+    margin-bottom:20px;
+}
+
+p {
+    color:#333;
+    line-height:1.5;
+    text-align: justify;
+}

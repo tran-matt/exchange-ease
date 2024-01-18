@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "./Registration.css";
 
 const Registration = () => {
   let navigate = useNavigate();
@@ -103,7 +104,7 @@ const Registration = () => {
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" value={email} onChange={handleEmailChange} required />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );

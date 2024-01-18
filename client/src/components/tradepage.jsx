@@ -13,7 +13,6 @@ const TradePage = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     checkSession().then(data => {
       if (data) {
@@ -90,6 +89,7 @@ const TradePage = () => {
           <h2>Selected Item for Trade</h2>
           <p>Item Name: {selectedItem.name}</p>
           <p>Description: {selectedItem.description}</p>
+          <img src={selectedItem.image} alt={selectedItem.name} />
         </div>
       )}
 
@@ -100,6 +100,7 @@ const TradePage = () => {
             {userItems.map((item) => (
               <li key={item.id}>
                 Item ID: {item.id}, Name: {item.name}
+                <img src={item.image} alt={item.name} />
                 <button onClick={() => handleToggleItemSelection(item.id)}>
                   {selectedItems.includes(item.id) ? 'Deselect' : 'Select'}
                 </button>

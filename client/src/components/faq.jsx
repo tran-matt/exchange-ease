@@ -1,9 +1,11 @@
 import React from 'react';
+import "./FAQ.css";
 
 const FAQ = () => {
   return (
-    <div>
-      <h1>Frequently Asked Questions (FAQ)</h1>
+    
+    <div className="faq-section">
+      <h1><strong>Frequently Asked Questions (FAQ)</strong></h1>
 
       <section>
         <h2>General Questions</h2>

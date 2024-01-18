@@ -1,0 +1,92 @@
+/* userdashboard.css */
+
+.user-dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .user-actions {
+    margin-top: 20px;
+  }
+  
+  .user-section {
+    margin-top: 30px;
+  }
+  
+  /* Add your own styles for item, trade, and offer lists */
+  .item-list {
+    /* Add styles for item list */
+  }
+  
+  .trade-list {
+    /* Add styles for trade list */
+  }
+  
+  .offer-list {
+    /* Add styles for offer list */
+  }
+  
+  /* Updated styles for positioning */
+  .user-actions {
+    /* Align Create New Listing to the left */
+    text-align: left;
+  }
+  
+  .user-rating {
+    /* Align User Rating to the top right */
+    text-align: right;
+  }
+  
+  /* Additional styling for the header buttons if needed */
+  .user-actions button {
+    margin-right: 10px; 
+  }
+  
+  .user-rating h3 {
+    margin-bottom: 10px; 
+  }
+  
+  .star-rating {
+    font-size: 24px; 
+  }
+  
+  .star-filled {
+    color: #ffd700; 
+  }
+  
+  .star-empty {
+    color: #ccc;
+  }
+  
+.accept-offer-button,
+.reject-offer-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  background: #F1B686;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 10px; 
+  margin-top: 10px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.accept-offer-button:hover,
+.reject-offer-button:hover {
+  background-color: #FFF;
+}
+
+.user-dashboard-container img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+  }
+  

@@ -1,22 +1,28 @@
 /* TradePage.css */
 .trade-page-container {
-    display: flex;
-    flex-direction: column; /* Adjust to column layout */
-    align-items: center; /* Center content horizontally */
-    justify-content: space-between;
-    height: 100vh; /* Make sure the container takes the full height of the viewport */
-  }
-  
-  .selected-item-box,
-  .user-items-box {
-    width: 45%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-  }
-  
-  .confirm-offer-section {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.selected-item-box,
+.user-items-box {
+  width: 45%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+
+.selected-item-box img,
+.user-items-box img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+
+.confirm-offer-section {
+  text-align: center;
+  margin-bottom: 20px;
+}

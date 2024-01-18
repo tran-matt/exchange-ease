@@ -90,18 +90,22 @@ const SearchPage = () => {
         </select>
       </div>
 
-      {/* Display Search Results */}
-      <div className="search-results">
-        <h2>Search Results</h2>
-        <div className="result-grid">
-          {filteredItems.map((item) => (
-            <div key={item.id} className="result-box">
-              <strong>{item.name}</strong> - {item.description}
-              <button onClick={() => handleTradeClick(item.id)}>Trade</button>
-            </div>
-          ))}
+       Display Search Results
+<div className="search-results">
+  <h2>Search Results</h2>
+  <div className="result-grid">
+    {filteredItems.map((item) => (
+      <div key={item.id} className="result-box">
+        <img src={item.image} alt={item.name} className="item-image" />
+        <div><p></p>
+          <strong>{item.name}</strong><p></p>Description: {item.description}
         </div>
+        <button onClick={() => handleTradeClick(item.id)}>Trade</button>
       </div>
+    ))}
+  </div>
+</div>
+
     </div>
   );
 };

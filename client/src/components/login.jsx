@@ -1,20 +1,26 @@
+// Login.js
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './login.css';
 
 const Login = ({ onSuccessfulLogin }) => {
   const navigate = useNavigate();
   const [loginFormData, setLoginFormData] = useState({
     username: '',
-    password: '', 
+    password: '',
   });
 
   const updateLoginFormData = (e) => {
     setLoginFormData({ ...loginFormData, [e.target.name]: e.target.value });
   };
+
   const handleSuccessfulLogin = (data) => {
-    sessionStorage.setItem('token', JSON.stringify(data))
-    navigate('/userdashboard')
-  
+    sessionStorage.setItem('token', JSON.stringify(data));
+    // Notify the parent component (if needed)
+    onSuccessfulLogin();
+    // Navigate to userdashboard
+    navigate('/userdashboard');
   };
 
   const handleSubmit = async (e) => {
@@ -22,7 +28,7 @@ const Login = ({ onSuccessfulLogin }) => {
     try {
       const response = await fetch('/api/login', {
         method: 'POST',
-        credentials: 'include',  
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -42,9 +48,9 @@ const Login = ({ onSuccessfulLogin }) => {
   };
 
   return (
-    <div>
+    <div className="center-content">
       <h1>Login</h1>
-      <form onSubmit={(e)=>{handleSubmit(e)}}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="username">Username:</label>
           <input

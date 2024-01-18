@@ -36,14 +36,7 @@ const AddItem = ({ user }) => {
       }
       
       console.log(formDataToSend);
-      // new FormData();
-      // formDataToSend.append("name", formData.name);
-      // formDataToSend.append("description", formData.description);
-      // formDataToSend.append("estimated_value", parseFloat(formData.estimatedValue));
-      // formDataToSend.append("type", formData.itemType);
-      // formDataToSend.append("owner_id", ownerId);
-      // formDataToSend.append("image", formData.image);
-  
+   
       const response = await fetch("/api/items", {
         method: 'POST',
         headers: {

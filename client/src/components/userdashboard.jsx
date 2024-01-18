@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import checkSession from "./checkSession";
-import "./userdashboard.css";
+import "./userdashboard.css"; 
 import TradeCard from "./TradeCard";
+import StarRating from "./StarRating";
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
@@ -137,7 +138,7 @@ const UserDashboard = () => {
         setAcceptedOfferIds((prevAcceptedOfferIds) => [...prevAcceptedOfferIds, offerId]);
   
         // Redirect to the addreview page with trade details
-        // navigate(`/addreview/${offer.initiator_id}`);
+        navigate(`/addreview/${offer.initiator_id}`);
       } else {
         console.error('Failed to accept offer:', response.status);
       }
@@ -167,18 +168,37 @@ const UserDashboard = () => {
   return user ? (
     <div>
       <h2>Welcome, {user.first_name}!</h2>
-
+  
+      <div className="dashboard-header">
+        <div className="left-section">
+          <button onClick={handleAddItem}>Create New Listing</button>
+        </div>
+        <div className="right-section">
+          <h3>User Rating</h3>
+          {reviews.length > 0 ? (
+            <ul>
+              {reviews.map((review) => (
+                <li key={review.id}>
+                  Rating: <StarRating rating={review.rating} /> Feedback: {review.text}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Trade your item to get a review!</p>
+          )}
+        </div>
+      </div>
+  
       <div>
-        <h3>Your Items</h3>
-        <button onClick={handleAddItem}>Add Item</button>
+        <h3>Posted Items</h3>
         {items.length > 0 ? (
           <ul>
             {items.map((item) => (
               <li key={item.id}>
                 <strong>Name:</strong> {item.name} <br />
                 <strong>Description:</strong> {item.description} <br />
-                <strong>Estimated Value:</strong> {item.estimatedValue} <br />
-                <strong>Item Type:</strong> {item.itemType} <br />
+                <strong>Estimated Value:</strong> {item.estimated_value} <br />
+                <strong>Item Type:</strong> {item.type} <br />
                 <strong>Image:</strong> <img src={item.image} alt={item.name} /> <br />
                 <button onClick={() => handleEditItem(item.id)}>Edit</button>
                 <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
@@ -189,42 +209,41 @@ const UserDashboard = () => {
           <p>Add your first item today!</p>
         )}
       </div>
-
+  
       <div>
-        <h3>Your Trades</h3>
+        <h3>Trade in Progress</h3>
         {trades.length > 0 ? (
           <ul>
-            {trades.map((trade) => {
-        console.log(trade);  
-        return <TradeCard key={trade.id} trade={trade} handleDeleteTrade={handleDeleteTrade} />;
-      })}
+            {trades.map((trade) => (
+              <TradeCard key={trade.id} trade={trade} handleDeleteTrade={handleDeleteTrade} />
+            ))}
           </ul>
         ) : (
           <p>No ongoing trades.</p>
         )}
       </div>
-
+  
       <div>
-  <h3>Trade Offers</h3>
+  <h3>New Offers</h3>
   {tradeOffers.length > 0 ? (
     <ul>
       {tradeOffers.map((offer) => (
         <div key={offer.id}>
           {offer.status === 'Complete' ? (
             <>
-            <span>Offer accepted</span>
-            <TradeCard key={offer.id} trade={offer} type={'offer'} />
+              <span>Offer accepted</span>
+              <TradeCard key={offer.id} trade={offer} type={'offer'} />
             </>
           ) : offer.status === 'Incomplete' ? (
             <>
-            <span>Offer rejected</span>
-            <TradeCard key={offer.id} trade={offer} type={'offer'} />
+              <span>Offer rejected</span>
+              <TradeCard key={offer.id} trade={offer} type={'offer'} />
             </>
           ) : (
             <>
               <TradeCard key={offer.id} trade={offer} type={'offer'} />
-              <button onClick={() => handleAcceptOffer(offer)}>Accept Offer</button>
-              <button onClick={() => handleRejectOffer(offer.id)}>Reject Offer</button>
+              <button className="accept-offer-button" onClick={() => handleAcceptOffer(offer)}>Accept Offer</button>
+              <button className="reject-offer-button" onClick={() => handleRejectOffer(offer.id)}>Reject Offer</button>
             </>
           )}
         </div>
@@ -234,26 +253,11 @@ const UserDashboard = () => {
     <p>No trade offers received.</p>
   )}
 </div>
-
-
-      <div>
-        <h3>{user.first_name}'s Reviews</h3>
-        {reviews.length > 0 ? (
-          <ul>
-            {reviews.map((review) => (
-              <li key={review.id}>
-                Rating: {review.rating}, Comment: {review.text}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Trade your item to get a review!</p>
-        )}
-      </div>
     </div>
   ) : (
     navigate("/login")
   );
+  
 };
 
 export default UserDashboard;

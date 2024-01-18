@@ -10,7 +10,7 @@ const EditItem = () => {
     description: "",
     estimatedValue: 0,
     type: "",
-    image: "", 
+    image: "",
   });
 
   useEffect(() => {
@@ -44,7 +44,13 @@ const EditItem = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify(item),
+        body: JSON.stringify({
+          name: item.name,
+          description: item.description,
+          estimated_value: item.estimatedValue,
+          type: item.type,
+          image: item.image,
+        }),
       });
 
       if (response.ok) {
@@ -74,12 +80,36 @@ const EditItem = () => {
       <br />
       <label>
         Estimated Value:
-        <input type="number" name="estimatedValue" value={item.estimatedValue} onChange={handleInputChange} />
+        <input type="text" name="estimatedValue" value={item.estimatedValue} onChange={handleInputChange} />
       </label>
       <br />
       <label>
         Type:
-        <input type="text" name="type" value={item.type} onChange={handleInputChange} />
+        <select name="type" value={item.type} onChange={handleInputChange}>
+          <option value="" disabled>Select an item type</option>
+          {[
+            "Electronics",
+            "Home and Furniture",
+            "Clothing and Accessories",
+            "Books and Media",
+            "Collectables and Memorabilia",
+            "Toys and Hobbies",
+            "Sports and Outdoor Equipment",
+            "Tools and DIY Equipment",
+            "Health and Fitness",
+            "Vehicles and Parts",
+            "Arts and Crafts",
+            "Musical Instruments",
+            "Services",
+            "Tickets and Events",
+            "Pets and Pet Supplies",
+            "Miscellaneous",
+          ].map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
       </label>
       <br />
       <label>
