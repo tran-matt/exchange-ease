@@ -14,7 +14,7 @@ import EditItem from "./EditItem";
 import AddReview from "./AddReview";
 import CustomerSupport from "./CustomerSupport"; 
 import ContactUs from "./ContactUs"; 
-// import Footer from "./Footer";
+import Footer from "./Footer";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -43,6 +43,7 @@ const App = () => {
             <Route path="/contactus" element={<ContactUs />} />
           </Routes>
         </Suspense>
+        <Footer/>
       </BrowserRouter>
     </ThemeProvider>
   );

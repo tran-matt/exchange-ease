@@ -4,6 +4,8 @@ import checkSession from "./checkSession";
 import "./userdashboard.css"; 
 import TradeCard from "./TradeCard";
 import StarRating from "./StarRating";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
@@ -167,88 +169,124 @@ const UserDashboard = () => {
 
   return user ? (
     <div>
-      <h2>Welcome, {user.first_name}!</h2>
-  
-      <div className="dashboard-header">
-        <div className="left-section">
-          <button onClick={handleAddItem}>Create New Listing</button>
-        </div>
-        <div className="right-section">
-          <h3>User Rating</h3>
-          {reviews.length > 0 ? (
-            <ul>
-              {reviews.map((review) => (
-                <li key={review.id}>
-                  Rating: <StarRating rating={review.rating} /> Feedback: {review.text}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Trade your item to get a review!</p>
-          )}
-        </div>
+       <div className="welcome-container">
+        <h2 className="welcome-message">Welcome, {user.first_name}!</h2>
       </div>
+
+      <div className="container text-center">
+        <div className="row">
+          <div className="col-md-6">
+            {/* Left column containing Create New Listing Button */}
+            <div className="left-section text-center">
+            <p style={{ fontSize: '1.5em', fontWeight: 'bold' }}>Create New Listing</p>
+              <button onClick={handleAddItem}>
+              <FontAwesomeIcon icon={faPlus} size="2x" />
+              </button>
+            </div>
+    </div>
+    <div className="col-md-6">
+      {/* Right column containing User Rating */}
+      <div className="right-section text-center">
+        <h3>User Rating</h3>
+        {reviews.length > 0 ? (
+          <ul className="list-unstyled">
+            {reviews.map((review) => (
+              <li key={review.id}>
+                Reviewer ID: {review.reviewer_id}, Rating: <StarRating rating={review.rating} /> Feedback: {review.text}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="d-flex flex-column align-items-center">
+            <p>Trade your item to get a review!</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
   
       <div>
         <h3>Posted Items</h3>
         {items.length > 0 ? (
-          <ul>
+          <div className="row">
             {items.map((item) => (
-              <li key={item.id}>
-                <strong>Name:</strong> {item.name} <br />
-                <strong>Description:</strong> {item.description} <br />
-                <strong>Estimated Value:</strong> {item.estimated_value} <br />
-                <strong>Item Type:</strong> {item.type} <br />
-                <strong>Image:</strong> <img src={item.image} alt={item.name} /> <br />
-                <button onClick={() => handleEditItem(item.id)}>Edit</button>
-                <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-              </li>
+              <div className="col-md-4 mb-3" key={item.id}>
+                <div className="card">
+                  <img src={item.image} className="card-img-top" alt={item.name} />
+                  <div className="card-body">
+                    <h5 className="card-title">{item.name}</h5>
+                    <p className="card-text">{item.description}</p>
+                    <p className="card-text">
+                      <strong>Estimated Value:</strong> {item.estimated_value} <br />
+                      <strong>Item Type:</strong> {item.type}
+                    </p>
+                    <button className="btn btn-primary" onClick={() => handleEditItem(item.id)}>
+                      Edit
+                    </button>
+                    <button className="btn btn-danger" onClick={() => handleDeleteItem(item.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p>Add your first item today!</p>
         )}
       </div>
   
       <div>
-        <h3>Trade in Progress</h3>
-        {trades.length > 0 ? (
-          <ul>
-            {trades.map((trade) => (
-              <TradeCard key={trade.id} trade={trade} handleDeleteTrade={handleDeleteTrade} />
-            ))}
-          </ul>
-        ) : (
-          <p>No ongoing trades.</p>
-        )}
-      </div>
+  <h3>Trade in Progress</h3>
+  {trades.length > 0 ? (
+    <div className="row">
+      {trades.map((trade) => (
+        <div className="col-md-4 mb-3" key={trade.id}>
+          <div className="card">
+            <div className="card-body">
+              <TradeCard trade={trade} handleDeleteTrade={handleDeleteTrade} />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p>No ongoing trades.</p>
+  )}
+</div>
+
   
       <div>
   <h3>New Offers</h3>
   {tradeOffers.length > 0 ? (
-    <ul>
+    <div className="row">
       {tradeOffers.map((offer) => (
-        <div key={offer.id}>
-          {offer.status === 'Complete' ? (
-            <>
-              <span>Offer accepted</span>
-              <TradeCard key={offer.id} trade={offer} type={'offer'} />
-            </>
-          ) : offer.status === 'Incomplete' ? (
-            <>
-              <span>Offer rejected</span>
-              <TradeCard key={offer.id} trade={offer} type={'offer'} />
-            </>
-          ) : (
-            <>
-              <TradeCard key={offer.id} trade={offer} type={'offer'} />
-              <button className="accept-offer-button" onClick={() => handleAcceptOffer(offer)}>Accept Offer</button>
-              <button className="reject-offer-button" onClick={() => handleRejectOffer(offer.id)}>Reject Offer</button>
-            </>
-          )}
+        <div className="col-md-4 mb-3" key={offer.id}>
+          <div className="card">
+            <div className="card-body">
+              {offer.status === 'Complete' ? (
+                <>
+                  <span><strong>Offer accepted</strong></span>
+                  <TradeCard trade={offer} type={'offer'} />
+                </>
+              ) : offer.status === 'Incomplete' ? (
+                <>
+                  <span><strong>Offer rejected</strong></span>
+                  <TradeCard trade={offer} type={'offer'} />
+                </>
+              ) : (
+                <>
+                  <TradeCard trade={offer} type={'offer'} />
+                  <button className="accept-offer-button" onClick={() => handleAcceptOffer(offer)}>Accept Offer</button>
+                  <button className="reject-offer-button" onClick={() => handleRejectOffer(offer.id)}>Reject Offer</button>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       ))}
-    </ul>
+    </div>
   ) : (
     <p>No trade offers received.</p>
   )}

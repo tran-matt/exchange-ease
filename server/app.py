@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from config import app, db, api
 from models import User, Item, Trade, Review
 from sqlalchemy import or_
+from sqlalchemy.exc import IntegrityError
 
 
 @app.before_request

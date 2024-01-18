@@ -1,84 +1,86 @@
-navbar.css
+/* navbar.css */
 
-nav {
+.navbar {
+  background-color: #ACCEF4;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-}
-
-.navbar-links, .auth-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-grow:1;
-}
-
-.navbar-links a,
-.auth-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  margin-right: 20px;
-  transition: color 0.3s ease;
-}
-
-.navbar-links a:hover,
-.auth-links a:hover {
-  color: #0547A7;
-}
-
-.toggle-container {
-  position: absolute;
-  top: 5%; /* Adjust the top position as needed */
-  right: 5%; /* Adjust the right position as needed */
-}
-
-.toggle-input {
-  display: none;
+  padding: 10px 20px;
 }
 
 .toggle-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 37px;
-  height: 17.98px;
+  width: 40px;
+  height: 20px;
   background-color: #0547A7;
-  transition: 0.4s;
-  border-radius: 34px;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  margin-right:20px;
+  margin-left:20px;
 }
 
 .toggle-slider:before {
   content: "";
   position: absolute;
-  height: 15px;
-  width: 15px;
-  left: 30%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #D9D9D9;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
   border-radius: 50%;
-  transition: 0.4s;
+  transition: transform 0.3s ease;
 }
 
-.toggle-input:checked + .toggle-slider {
-  background-color: #D9D9D9;
+.toggle-slider:hover:before {
+  transform: translateX(20px);
 }
 
-.toggle-input:checked + .toggle-slider:before {
-  left: 70%;
+/* Container for left-aligned and right-aligned links */
+.navbar-links {
+  display: flex;
+  width:100%;
 }
 
-header {
-  background-color: #ACCEF4;
-  height: 109px; 
-  padding: 18px 120px;
+/* Styles for left-aligned links */
+.left-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex: 1; 
 }
+
+.left-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.left-links a:hover {
+  text-decoration: none;
+  color: #0547A7;
+}
+
+/* Styles for right-aligned links */
+.right-links {
+  display: flex;
+  align-items: center;
+}
+
+.right-links a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.right-links a:hover {
+  text-decoration: none;
+  color: #0547A7;
+}
+
+/* Rest of the existing styles */
 
 .logout-button {
   display: flex;
@@ -87,32 +89,16 @@ header {
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   border-radius: 10px;
   background: #0547A7;
-  color: #fff; 
-  border: none; 
+  color: #fff;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
-  background-color: #000000; 
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-  margin: 0; 
-  padding: 0;
-}
-
-.navbar-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  margin-right: 20px;
-  transition: color 0.3s ease;
+  background-color: #000000;
 }
 
 .signup-button {
@@ -124,22 +110,23 @@ header {
   gap: 10px;
   border-radius: 10px;
   background: #0547A7;
-  color: #ffffff; 
-  user-select: none; 
+  color: #ffffff;
+  user-select: none;
 }
 
 .signup-button:hover {
-  background: #000000; 
+  background: #000000;
 }
+
 
 .logo-container {
   width: 80px;
   height: 80px;
-  margin-top: 25px; 
+  margin-top: 25px;
 }
 
 .logo-container img {
-  width: 100%; 
+  width: 100%;
   height: 100%;
-  object-fit: contain; 
+  object-fit: contain;
 }

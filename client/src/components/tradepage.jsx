@@ -86,20 +86,21 @@ const TradePage = () => {
     <div className="trade-page-container">
       {isLoggedIn && selectedItem && (
         <div className="selected-item-box">
-          <h2>Selected Item for Trade</h2>
-          <p>Item Name: {selectedItem.name}</p>
-          <p>Description: {selectedItem.description}</p>
+          <h2><strong>Selected Item for Trade</strong></h2>
+          <p><strong>Item Name:</strong> {selectedItem.name}</p>
+          <p><strong>Description:</strong> {selectedItem.description}</p>
           <img src={selectedItem.image} alt={selectedItem.name} />
         </div>
       )}
 
       {isLoggedIn && (
         <div className="user-items-box">
-          <h2>Your Items for Trade</h2>
+          <h2><strong>Your Items for Trade</strong></h2>
           <ul>
             {userItems.map((item) => (
               <li key={item.id}>
-                Item ID: {item.id}, Name: {item.name}
+                <p><strong>Item Name: </strong>{item.name}</p>
+                <p><strong>Description: </strong>{item.description}</p>
                 <img src={item.image} alt={item.name} />
                 <button onClick={() => handleToggleItemSelection(item.id)}>
                   {selectedItems.includes(item.id) ? 'Deselect' : 'Select'}
@@ -112,7 +113,7 @@ const TradePage = () => {
 
       {/* Confirm trade offer section */}
       <div className="confirm-offer-section">
-        <p>Confirm trade offer?</p>
+        <p><strong>Confirm trade offer?</strong></p>
         <button onClick={handleConfirmOffer}>Confirm offer</button>
       </div>
     </div>

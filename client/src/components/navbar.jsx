@@ -1,3 +1,5 @@
+// navbar.jsx
+
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
@@ -32,16 +34,28 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav>
-      <div className={`navbar-right ${isDarkMode ? "dark-mode" : ""}`}>
-        <div className="navbar-left">
-          <div className="navbar-links">
-            <div className="logo-container">
-            <img src="exchangeeaselogo.png" alt="Exchange Ease Logo" />
-               </div>
-                  <Link to="/">About Us</Link>
-                  <Link to="/faq">FAQ</Link>
-                  {!loggedIn ? <Link to="/login">Login</Link> : null}
+      <nav className={`navbar ${isDarkMode ? "dark-mode" : ""}`}>
+        <div className="container-fluid">
+          <Link to="/" className="navbar-brand">
+            <img
+              src="inventory.png"
+              alt="Exchange Ease Logo"
+              width="30"
+              height="24"
+              className="d-inline-block align-text-top"
+            />
+            Exchange Ease
+          </Link>
+        </div>
+        <div className="navbar-links">
+          <div className="left-links">
+            <Link to="/">About Us</Link>
+            <Link to="/faq">FAQ</Link>
+            {loggedIn ? <Link to="/userdashboard">My Account</Link> : null}
+            {loggedIn ? <Link to="/searchpage">Discover</Link> : null}
+          </div>
+          <div className="right-links">
+            {!loggedIn ? <Link to="/login">Login</Link> : null}
             {!loggedIn ? (
               <button
                 onClick={() => navigate("/registration")}
@@ -50,32 +64,16 @@ const Navbar = () => {
                 Sign Up
               </button>
             ) : null}
-            {loggedIn ? <Link to="/userdashboard">My Account</Link> : null}
-            {loggedIn ? <Link to="/searchpage">Discover</Link> : null}
             {loggedIn && (
               <button onClick={handleLogout} className="logout-button">
                 Logout
               </button>
             )}
-          <div className="toggle-container">
-            <input
-              type="checkbox"
-              id="themeToggle"
-              className="toggle-input"
-              checked={isDarkMode}
-              onChange={toggleTheme}
-            />
-            <label htmlFor="themeToggle" className="toggle-slider"></label>
           </div>
-               </div>
-             </div>
-         
-
-        <div className="auth-links" style={{ margin: "0 80px" }}>
-           
-          </div>
-          {/* Toggle Container */}
-
+          <div
+            className={`toggle-slider ${isDarkMode ? "dark-mode" : ""}`}
+            onClick={toggleTheme}
+          ></div>
         </div>
       </nav>
     </header>

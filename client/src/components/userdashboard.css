@@ -89,4 +89,15 @@
     aspect-ratio: 3/2;
     object-fit: contain;
   }
+  .welcome-container {
+    background: #0547A7;
+    padding: 20px 55px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
   
+  .welcome-message {
+    color: white;
+  }
