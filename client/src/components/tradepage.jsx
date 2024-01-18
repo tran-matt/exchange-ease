@@ -1,8 +1,9 @@
-// tradepage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import checkSession from "./checkSession";
 import './TradePage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const TradePage = () => {
   const { itemId } = useParams();
@@ -79,42 +80,51 @@ const TradePage = () => {
       console.error('Error initiating trade offer:', error);
     }
   };
-  
-
 
   return (
     <div className="trade-page-container">
-      {isLoggedIn && selectedItem && (
-        <div className="selected-item-box">
-          <h2><strong>Selected Item for Trade</strong></h2>
-          <p><strong>Item Name:</strong> {selectedItem.name}</p>
-          <p><strong>Description:</strong> {selectedItem.description}</p>
-          <img src={selectedItem.image} alt={selectedItem.name} />
-        </div>
-      )}
-
-      {isLoggedIn && (
-        <div className="user-items-box">
-          <h2><strong>Your Items for Trade</strong></h2>
-          <ul>
-            {userItems.map((item) => (
-              <li key={item.id}>
-                <p><strong>Item Name: </strong>{item.name}</p>
-                <p><strong>Description: </strong>{item.description}</p>
-                <img src={item.image} alt={item.name} />
-                <button onClick={() => handleToggleItemSelection(item.id)}>
-                  {selectedItems.includes(item.id) ? 'Deselect' : 'Select'}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
       {/* Confirm trade offer section */}
       <div className="confirm-offer-section">
-        <p><strong>Confirm trade offer?</strong></p>
-        <button onClick={handleConfirmOffer}>Confirm offer</button>
+        <button className="accept-offer-button" onClick={handleConfirmOffer}>
+          Confirm Offer <FontAwesomeIcon icon={faCheck} />
+        </button>
+        <button className="reject-offer-button" onClick={() => navigate('/userdashboard')}>
+          Cancel <FontAwesomeIcon icon={faTimes} />
+        </button>
+      </div>
+
+      <div className="row">
+        <div className="col-md-6">
+          {/* Left column containing selected-item-box */}
+          {isLoggedIn && selectedItem && (
+            <div className="selected-item-box">
+              <h2><strong>Selected Item for Trade</strong></h2>
+              <p><strong>Item Name:</strong> {selectedItem.name}</p>
+              <p><strong>Description:</strong> {selectedItem.description}</p>
+              <img src={selectedItem.image} alt={selectedItem.name} />
+            </div>
+          )}
+        </div>
+        <div className="col-md-6">
+          {/* Right column containing user-items-box */}
+          {isLoggedIn && (
+            <div className="user-items-box">
+              <h2><strong>Your Items for Trade</strong></h2>
+              <ul>
+                {userItems.map((item) => (
+                  <li key={item.id}>
+                    <p><strong>Item Name: </strong>{item.name}</p>
+                    <p><strong>Description: </strong>{item.description}</p>
+                    <img src={item.image} alt={item.name} />
+                    <button onClick={() => handleToggleItemSelection(item.id)}>
+                      {selectedItems.includes(item.id) ? 'Deselect' : 'Select'}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

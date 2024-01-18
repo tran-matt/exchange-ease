@@ -4,16 +4,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
 }
 
 .selected-item-box,
 .user-items-box {
-  width: 45%;
+  width: 90%;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
-  margin: 0 auto; /* Center horizontally */
+  margin: 0 auto; 
 }
 
 .selected-item-box img,
@@ -24,18 +23,48 @@
 }
 
 .confirm-offer-section {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
   text-align: center;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 50px; /* Adjust margin-bottom to create space */
 }
 
 .confirm-offer-section button,
 .user-items-box button {
   display: flex;
-  width: 200px;
-  padding: 10px 20px;
+  width: 150px; 
+  padding: 10px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 10px;
   background: var(--orange, #F1B686);
+}
+
+.confirm-text {
+  margin-bottom: 10px;
+}
+
+.user-items-box ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-items-box li {
+  max-width: 100%; /* Adjust the maximum width as needed */
+  margin-bottom: 15px; /* Add some space between list items */
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-items-box p {
+  margin: 0; /* Remove default margin for paragraphs */
+}
+
+.user-items-box button {
+  margin-top: 10px; /* Adjust spacing between button and content */
 }

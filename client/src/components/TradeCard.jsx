@@ -46,7 +46,7 @@ const TradeCard = ({ trade, handleDeleteTrade, type = 'trades' }) => {
       )}
       <p><strong>Desired Item:</strong> {trade_item.name}</p>
       <p><strong>Item Description:</strong> {trade_item.description}</p>
-      {type === 'trades' && <button onClick={() => handleDeleteTrade(trade.id)}>Delete</button>}
+      {type === 'trades' && <button className="btn btn-danger" onClick={() => handleDeleteTrade(trade.id)}>Delete</button>}
     </>
   );
 };
